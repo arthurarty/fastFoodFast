@@ -21,5 +21,6 @@ module.exports = {
       }
     ]
   },
+  resolve: { extensions: [".jsx", ".js", ".json"] },
   plugins: [htmlPlugin]
 };
