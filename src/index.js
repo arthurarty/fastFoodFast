@@ -1,8 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Routes from './routes/index';
 
-const Index = () => {
-  return <div>Hello React!</div>;
-};
-
+class Index extends React.Component {
+  render() {
+    return (
+      <Routes />
+    );
+  }
+}
 ReactDOM.render(<Index />, document.getElementById("root"));
