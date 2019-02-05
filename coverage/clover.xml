@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1549285790784" clover="3.2.0">
-  <project timestamp="1549285790784" name="All files">
+<coverage generated="1549289907909" clover="3.2.0">
+  <project timestamp="1549289907909" name="All files">
     <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3" elements="9" coveredelements="9" complexity="0" loc="6" ncloc="6" packages="4" files="4" classes="4"/>
     <package name="src">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -26,7 +26,7 @@
     </package>
     <package name="src.views">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="homeView.js" path="/Users/arthurnangai/Documents/react/fastFastFront/src/views/homeView.js">
+      <file name="homeView.jsx" path="/Users/arthurnangai/Documents/react/fastFastFront/src/views/homeView.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
