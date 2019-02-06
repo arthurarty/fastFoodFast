@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import 'msg-notify/dist/notify.css';
 import notify from 'msg-notify';
 import { bindActionCreators } from 'redux';
-import { signUpUserThunk } from '../redux/thunks/authThunk';
+import { postDataThunk } from '../redux/thunks';
 import SignUpForm from '../components/auth/SignUpForm';
 import LoginForm from '../components/auth/LoginForm';
+import { signUp, loginUser } from '../redux/actions/authActions';
 
-class HomeView extends React.Component {
+export class HomeView extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -16,14 +17,22 @@ class HomeView extends React.Component {
     };
     this.updateUserState = this.updateUserState.bind(this);
     this.saveUser = this.saveUser.bind(this);
+    this.login = this.login.bind(this);
   }
 
   componentDidUpdate(prevProps) {
-    let { message } = this.props.state;
-    if (message !== prevProps.state.message) {
-      console.log(message[0].msg);
+    let { message, loginMessage } = this.props.state;
+    if ((message !== prevProps.state.message) && (message.length > 0)) {
       notify(message[0].msg, 'info');
       message = [];
+    }
+    if (loginMessage !== prevProps.state.loginMessage) {
+      if (typeof loginMessage[0].msg !== 'undefined') {
+        notify(loginMessage[0].msg);
+      }
+      notify(loginMessage[0][0].msg, 'info');
+      localStorage.setItem('access_token', loginMessage[0][1].access_token);
+      loginMessage = [];
     }
   }
 
@@ -38,7 +47,14 @@ class HomeView extends React.Component {
     const { user } = this.state;
     const { createUser } = this.props;
     event.preventDefault();
-    createUser(user);
+    createUser(user, 'signup', signUp);
+  }
+
+  login(event) {
+    const { user } = this.state;
+    const { createUser } = this.props;
+    event.preventDefault();
+    createUser(user, 'login', loginUser);
   }
 
   render() {
@@ -64,7 +80,7 @@ class HomeView extends React.Component {
           <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <LoginForm
               onChange={this.updateUserState}
-              onSave={this.saveUser}
+              onSave={this.login}
               user={user}
             />
           </div>
@@ -87,7 +103,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createUser: bindActionCreators(signUpUserThunk, dispatch),
+    createUser: bindActionCreators(postDataThunk, dispatch),
   };
 }
 

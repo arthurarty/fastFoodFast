@@ -18,6 +18,7 @@ const SignUpForm = ({
           onChange={onChange}
         />
         <TextInput
+          id="name"
           name="name"
           label="Name"
           value={user.name}
@@ -36,6 +37,7 @@ const SignUpForm = ({
           onChange={onChange}
         />
         <input
+          id="submit"
           type="submit"
           value="Sign UP"
           className="btn btn-primary btn-block"

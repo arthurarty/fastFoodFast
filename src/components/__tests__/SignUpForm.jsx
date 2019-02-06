@@ -5,22 +5,22 @@ import SignUpForm from '../auth/SignUpForm';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-function setup() {
+describe('signup form', () => {
+  let wrapper;
+
   const props = {
     user: { email: 'art@your.com', password: 'password', username: 'username' },
     onSave: jest.fn(),
     onChange: jest.fn(),
   };
-  const enzymeWrapper = shallow(<SignUpForm {...props} />);
 
-  return { props, enzymeWrapper };
-}
-
-describe('signup form', () => {
-  it('should render form', () => {
-    const { enzymeWrapper } = setup();
-
-    expect(enzymeWrapper.find('#signUpForm')).toBeDefined();
-    expect(enzymeWrapper.find('TextInput')).toBeDefined();
+  beforeEach(() => {
+    wrapper = shallow(<SignUpForm {...props} />);
   });
+
+  it('should render form', () => {
+    expect(wrapper.find('#signUpForm')).toBeDefined();
+    expect(wrapper.find('TextInput')).toBeDefined();
+  });
+
 });
