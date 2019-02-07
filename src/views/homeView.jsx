@@ -33,6 +33,7 @@ export class HomeView extends React.Component {
       notify(loginMessage[0][0].msg, 'info');
       localStorage.setItem('access_token', loginMessage[0][1].access_token);
       loginMessage = [];
+      this.props.history.push('/menu');
     }
   }
 
@@ -47,14 +48,14 @@ export class HomeView extends React.Component {
     const { user } = this.state;
     const { createUser } = this.props;
     event.preventDefault();
-    createUser(user, 'signup', signUp);
+    createUser(user, 'auth/signup', signUp);
   }
 
   login(event) {
     const { user } = this.state;
     const { createUser } = this.props;
     event.preventDefault();
-    createUser(user, 'login', loginUser);
+    createUser(user, 'auth/login', loginUser);
   }
 
   render() {
