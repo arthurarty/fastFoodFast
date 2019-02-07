@@ -4,7 +4,7 @@ import TextInput from '../common/TextInput';
 import PasswordInput from '../common/PasswordInput';
 
 const LoginForm = ({
-  user, onSave, onChange, loading,
+  user, onSave, onChange,
 }) => {
   return (
     <div className="col-lg-12 col-md-12 col-sm-12">
@@ -24,8 +24,7 @@ const LoginForm = ({
         />
         <input
           type="submit"
-          disabled={loading}
-          value="Sign UP"
+          value="Login"
           className="btn btn-primary btn-block"
           onClick={onSave}
         />
@@ -34,17 +33,12 @@ const LoginForm = ({
   );
 };
 
-LoginForm.defaultProps = {
-  loading: false,
-};
-
 LoginForm.propTypes = {
   user: PropTypes.shape({
     email: PropTypes.string,
   }).isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
 };
 
 

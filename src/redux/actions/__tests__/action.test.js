@@ -1,4 +1,4 @@
-import signUp from '../authActions';
+import { signUp, loginUser } from '../authActions';
 import * as types from '../actionTypes';
 
 describe('auth actions', () => {
@@ -9,5 +9,16 @@ describe('auth actions', () => {
       message: text,
     };
     expect(signUp(text)).toEqual(expectedAction);
+  });
+});
+
+describe('login action', () => {
+  it('Should return login message', () => {
+    const text = 'Success';
+    const expectedAction = {
+      type: types.LOGIN_USER,
+      loginMessage: text,
+    };
+    expect(loginUser(text)).toEqual(expectedAction);
   });
 });
