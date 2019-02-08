@@ -1,19 +1,38 @@
 const apiUrl = 'http://127.0.0.1:5000/v1/';
-const jwt = localStorage.getItem('access_token');
+const jwt = sessionStorage.getItem('access_token');
+let header;
 
-const fetchData = (dispatch, data, endPoint, actionCreator) => {
+const fetchData = (dispatch, input, endPoint, actionCreator, auth) => {
+  let data;
+  if (auth) {
+    header = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`,
+    };
+  } else {
+    header = { 'Content-Type': 'application/json' };
+  }
+  if (input.price !== undefined) {
+    data = {
+      food_name: input.food_name,
+      desc: input.desc,
+      price: Number(input.price),
+    };
+  } else {
+    data = input;
+  }
   return fetch(apiUrl + endPoint, {
     method: 'POST',
     mode: 'cors',
-    headers: { 'Content-Type': 'application/json' },
+    headers: header,
     body: JSON.stringify({ ...data }),
   }).then(res => res.json())
     .then(response => dispatch(actionCreator(response)))
     .catch(err => console.log(err));
 };
 
-export function postDataThunk(data, endPoint, actionCreator) {
-  return (dispatch) => { fetchData(dispatch, data, endPoint, actionCreator); };
+export function postDataThunk(input, endPoint, actionCreator, auth) {
+  return (dispatch) => { fetchData(dispatch, input, endPoint, actionCreator, auth); };
 }
 
 export function getDataThunk(endPoint, actionCreator) {
