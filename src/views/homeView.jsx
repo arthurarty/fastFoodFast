@@ -35,6 +35,7 @@ export class HomeView extends React.Component {
       sessionStorage.setItem('access_token', loginMessage[0][1].access_token);
       loginMessage = [];
       this.props.history.push('/menu');
+      window.location.reload();
     }
   }
 
