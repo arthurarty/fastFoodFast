@@ -24,7 +24,7 @@ export class HomeView extends React.Component {
   componentDidUpdate(prevProps) {
     let { message, loginMessage } = this.props.state;
     if ((message !== prevProps.state.message) && (message.length > 0)) {
-      notify(message[0].msg, 'info', timeout=4);
+      notify(message[0].msg, 'info');
       message = [];
     }
     if (loginMessage !== prevProps.state.loginMessage) {
