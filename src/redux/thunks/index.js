@@ -1,4 +1,4 @@
-const apiUrl = 'http://127.0.0.1:5000/v1/';
+const apiUrl = 'https://arty-fast.herokuapp.com/v1/';
 const jwt = sessionStorage.getItem('access_token');
 let header;
 
