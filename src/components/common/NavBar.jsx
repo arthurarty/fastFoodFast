@@ -10,10 +10,10 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <a className="nav-link" href="/">Menu</a>
+            <a className="nav-link" href="/menu">Menu</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/">Orders</a>
+            <a className="nav-link" href="/order">Orders</a>
           </li>
         </ul>
       </div>
