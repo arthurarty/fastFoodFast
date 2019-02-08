@@ -7,6 +7,10 @@ export default function menuReducer(state = initalState.menu, action) {
       return [...state,
         Object.assign({}, action.menu),
       ];
+    case types.CREATE_MENU_SUCCESS:
+      return [...state,
+        Object.assign({}, action.menuMessage),
+      ];
     default:
       return state;
   }

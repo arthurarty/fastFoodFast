@@ -11,6 +11,7 @@ describe('signup form', () => {
 
   const props = {
     getMenu: jest.fn(),
+    postMenu: jest.fn(),
     state: {
     }
   };
@@ -18,9 +19,18 @@ describe('signup form', () => {
   beforeEach(() => {
     wrapper = shallow(<MenuView{...props} />);
     instance = wrapper.instance();
+    jest.spyOn(instance, 'saveMenuItem');
   });
-
+  
   it('should render menu view', () => {
     expect(wrapper.find('MenuTable')).toBeDefined();
   });
+
+  it('should call saveMenuItem', () => {
+    instance.saveMenuItem({
+      preventDefault: () => {},
+    });
+    expect(instance.saveMenuItem).toBeCalled();
+  });
+
 });

@@ -1,4 +1,4 @@
-import { loadMenu } from '../menuAction';
+import { loadMenu, addMenu } from '../menuAction';
 import * as types from '../actionTypes';
 
 describe('menu actions', () => {
@@ -18,5 +18,14 @@ describe('menu actions', () => {
       menu,
     };
     expect(loadMenu(menu)).toEqual(expectedAction);
+  });
+
+  it('should return a message', () => {
+    const message = { msg: 'Food has been added' };
+    const expectedAction = {
+      type: types.CREATE_MENU_SUCCESS,
+      menuMessage: { msg: 'Food has been added' },
+    };
+    expect(addMenu(message)).toEqual(expectedAction);
   });
 });

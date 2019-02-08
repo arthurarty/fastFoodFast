@@ -34,4 +34,15 @@ describe('menu reducer', () => {
       },
     ]);
   });
+
+  it('should return menu message', () => {
+    expect(
+      reducer([], {
+        type: types.CREATE_MENU_SUCCESS,
+        menuMessage: { msg: 'Food has been added' },
+      }),
+    ).toEqual([
+      { msg: 'Food has been added' },
+    ]);
+  });
 });

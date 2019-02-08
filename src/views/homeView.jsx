@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import 'msg-notify/dist/notify.css';
+import './notification.css';
 import notify from 'msg-notify';
 import { bindActionCreators } from 'redux';
 import { postDataThunk } from '../redux/thunks';
@@ -23,7 +24,7 @@ export class HomeView extends React.Component {
   componentDidUpdate(prevProps) {
     let { message, loginMessage } = this.props.state;
     if ((message !== prevProps.state.message) && (message.length > 0)) {
-      notify(message[0].msg, 'info');
+      notify(message[0].msg, 'info', timeout=4);
       message = [];
     }
     if (loginMessage !== prevProps.state.loginMessage) {
@@ -31,7 +32,7 @@ export class HomeView extends React.Component {
         notify(loginMessage[0].msg);
       }
       notify(loginMessage[0][0].msg, 'info');
-      localStorage.setItem('access_token', loginMessage[0][1].access_token);
+      sessionStorage.setItem('access_token', loginMessage[0][1].access_token);
       loginMessage = [];
       this.props.history.push('/menu');
     }
@@ -48,14 +49,14 @@ export class HomeView extends React.Component {
     const { user } = this.state;
     const { createUser } = this.props;
     event.preventDefault();
-    createUser(user, 'auth/signup', signUp);
+    createUser(user, 'auth/signup', signUp, false);
   }
 
   login(event) {
     const { user } = this.state;
     const { createUser } = this.props;
     event.preventDefault();
-    createUser(user, 'auth/login', loginUser);
+    createUser(user, 'auth/login', loginUser, false);
   }
 
   render() {
